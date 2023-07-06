@@ -14,21 +14,24 @@ function f1() {
   let bb = 22;
   console.log("f1 >", gg, bb);
   f2(); //inner 이 시점에는 f2는 hoisting 됐지만 <f.o>로 정의되지 않은 상태
-  function f2() {
-    // 평가 시점에 f1 scope로 hoisting 된다
-    console.log("nested");
+  {
+    function f2() {
+      // 평가 시점에 f1 scope로 hoisting 된다
+      console.log("nested");
+    }
   }
   f2();
 }
 
 function f2() {
-  console.log("f2 >", gg, bb, xx, kk);
+  // console.log("f2 >", gg, bb, xx, kk);
+  console.log("f2 >", gg, bb);
 }
 let xx = 9;
-if (gg > 0) {
-  var kk = 33;
-  const yy = 9;
-}
+// if (gg > 0) {
+//   var kk = 33;
+//   const yy = 9;
+// }
 
 f1();
-console.log(kk, yy);
+// console.log(kk, yy);

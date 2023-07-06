@@ -7,7 +7,7 @@ function varFn() {
   {
     var v = 2,
       vv = 3;
-    console.log(v, vv, xx);
+    console.log(v, vv, xx); //2, 3, 9
   }
   console.log(v, vv); // 2, 3
 }
