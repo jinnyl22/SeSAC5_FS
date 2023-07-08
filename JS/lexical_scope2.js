@@ -19,7 +19,7 @@ function letFn() {
       ll = 3;
     console.log(l, ll); // 2, 3
   }
-  console.log(l, ll);
+  console.log(l, ll); // 같은 스코프 내부에 존재 하지 않으면 not defined
 }
 
 var xx = 9;
