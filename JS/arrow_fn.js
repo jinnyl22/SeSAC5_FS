@@ -11,12 +11,12 @@ const addTax1 = function (resolve) {
   };
 };
 
-// 매개변수가 1게면 매개변수의 괄호를 생략할 수 있다
-// const addTax2 = resolve => {
-//     return price => {
-//         return resolve(price*1.1)
-//     }
-// }
+// function 키워드 생략 가능
+const addTax2 = (resolve) => {
+  return (price) => {
+    return resolve(price * 1.1);
+  };
+};
 
-// body가 한 문장이면 중괄호와 return문을 생략할 수 있다
-// const addTax3 = resolve => price => resolve(price*1.1);
+//body가 한 문장이면 중괄호와 return문을 생략할 수 있다
+const addTax3 = (resolve) => (price) => resolve(price * 1.1);
