@@ -8,19 +8,19 @@ const weeks = ["일", "월", "화", "수", "목", "금", "토"];
 
 // const getNextWeek = () => {
 //   widx += 1; // side effect!
-// 토요일 다음에 다시 일요일로 가기 위해서!
+//   // 토요일 다음에 다시 일요일로 가기 위해서!
 //   if (widx >= weeks.length) widx = 0;
 //   return `${weeks[widx]}요일`;
 // };
 
-const getNextWeek = () => {
+const getNextWeek = (() => {
   let widx = -1;
-  const weekCnt = (wid) => {
-    wid += 1;
-    return wid;
+  return () => {
+    widx += 1;
+    if (widx >= weeks.length) widx = 0;
+    return `${weeks[widx]}요일`;
   };
-  return `${w[weekCnt]}요일`;
-};
+})();
 
 let cnt = 0;
 const intl = setInterval(() => {
