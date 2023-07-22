@@ -4,7 +4,6 @@
 
 const once = (fn) => {
   let isDone = false;
-  // ...args로 받은 이유는 확장성을 고려해서!
   return (...args) => (isDone ? undefined : ((isDone = true), fn(...args)));
 };
 const fn = once((x, y) => `금일 운행금지 차량은 끝번호 ${x}, ${y}입니다`);
