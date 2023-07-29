@@ -5,68 +5,75 @@
 const hong = { id: 1, name: "Hong" };
 const kim = { id: 2, name: "Kim" };
 const lee = { id: 3, name: "Lee" };
+const users = [hong, kim, lee]; // {id:1, name: 'Hong'}, …
 
+// 배열 리터럴은 인스턴스
 const arr = [1, 2, 3, 4, 5];
 
-Array.prototype.mapBy = function (args) {
-  const mapArr = this.map((el) => el[args]);
+Array.prototype.mapBy = function (k) {
+  // 화살표함수로 적으면 globalThis가 된다, function 키워드 사용해야함
+  // 생성자 함수 내부의 this는 생성자 함수가 생성할 인스턴스를 가리키게된다
+  // 해당 메서드를 호출한 user에 this가 바인딩된다
   // console.log("디스", this);
-  // console.log(mapArr);
-  return mapArr;
+  return this.map((el) => el[k]);
 };
 
 // Array.prototype.mapBy = function (args) {
 //   const mapArr = [];
-//   //   console.log(args);
 //   for (let i = 0; i < this.length; i++) {
 //     mapArr[i] = this[i][args];
 //   }
-//   console.log(mapArr);
+//   // console.log(mapArr);
 //   return mapArr;
 // };
 
 // findBy
 Array.prototype.findBy = function (k, name) {
-  const findArr = this.find((el) => el[k] == name);
-  // console.log(findArr);
-  return findArr;
+  return this.find((el) => el[k] === name);
 };
 
 // filterBy
 Array.prototype.filterBy = function (k, num) {
-  const filteArr = this.filter((el) => el[k] == num);
-  console.log(filteArr);
-  return filteArr;
+  // 원본배열이 변경되지 않은 새로운 배열 반환
+  return this.filter((el) => el[k] === num);
 };
 
-// firstObject
+// firstObject, lastObject
 Object.defineProperties(Array.prototype, {
   firstObject: {
-    get: () => {
-      console.log(arr[0]);
-      return arr[0];
+    get: function () {
+      return this[0];
     },
+    // enumerable: true,
   },
-});
-
-// lastObject
-Object.defineProperties(Array.prototype, {
   lastObject: {
-    get: () => {
-      console.log(arr[arr.length - 1]);
-      return arr[arr.length - 1];
+    get: function () {
+      console.log(this[this.length - 1]);
+      return this[this.length - 1];
     },
   },
 });
 
-// 객체의 프로퍼티에 접근하는 것처럼 사용!(호출하지 않음)
+// // Object.defineProperty 메서드는 한번에 하나의 프로퍼티만 정의 가능!
+// Object.defineProperty(Array.prototype, "lastObject", {
+//   get: () => {
+//     console.log(this[this.length - 1]);
+//     return this[this.length - 1];
+//   },
+// });
+
+// 함수가 아니라 객체임!!!
 arr.firstObject; // 1
 arr.lastObject; // 5
 
-const users = [hong, kim, lee]; // {id:1, name: 'Hong'}, …
-users.mapBy("id"); // [1, 2, 3]
-users.mapBy("name"); // ['Hong', 'Kim', 'Lee']
-users.findBy("name", "Kim"); // {id: 2, name: 'Kim'}
-users.findBy("name", "Lee"); // {id: 2, name: 'Kim'}
-users.filterBy("id", 2); // [{id: 2, name: 'Kim'}]
-users.filterBy("id", 3); // [{id: 2, name: 'Kim'}]
+// console.log(Object.getOwnPropertyDescriptors(Array.prototype));
+// console.log("firstObject >>>>", Object.getOwnPropertyDescriptor(Array.prototype, "firstObject"));
+
+// console.log(Object.getOwnPropertyDescriptors(users));
+
+console.log(users.mapBy("id")); // [1, 2, 3]
+console.log(users.mapBy("name")); // ['Hong', 'Kim', 'Lee']
+console.log(users.findBy("name", "Kim")); // {id: 2, name: 'Kim'}
+console.log(users.findBy("name", "Lee")); // {id: 3, name: 'Lee'}
+console.log(users.filterBy("id", 2)); // [{id: 2, name: 'Kim'}]
+console.log(users.filterBy("id", 3)); // [{id: 3, name: 'Lee'}]
