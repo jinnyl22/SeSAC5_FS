@@ -1,11 +1,12 @@
 /**
- * 1) mapBy(), findBy(), filterBy()
+ * 1) mapBy(), findBy(), filterBy(), uniqBy(), sortBy()
  * 2) firstObject, lastObject
  */
 const hong = { id: 1, name: "Hong" };
 const kim = { id: 2, name: "Kim" };
 const lee = { id: 3, name: "Lee" };
-const users = [hong, kim, lee]; // {id:1, name: 'Hong'}, …
+const yoon = { id: 3, name: "Yoon" };
+const users = [hong, kim, lee, yoon]; // {id:1, name: 'Hong'}, …
 
 // 배열 리터럴은 인스턴스
 const arr = [1, 2, 3, 4, 5];
@@ -37,6 +38,12 @@ Array.prototype.filterBy = function (k, num) {
   // 원본배열이 변경되지 않은 새로운 배열 반환
   return this.filter((el) => el[k] === num);
 };
+// uniqBy
+Array.prototype.uniqBy = function (prop) {
+  return new Set();
+};
+// sortBy
+Array.prototype.sortBy = function (prop) {};
 
 // firstObject, lastObject
 Object.defineProperties(Array.prototype, {
@@ -77,3 +84,5 @@ console.log(users.findBy("name", "Kim")); // {id: 2, name: 'Kim'}
 console.log(users.findBy("name", "Lee")); // {id: 3, name: 'Lee'}
 console.log(users.filterBy("id", 2)); // [{id: 2, name: 'Kim'}]
 console.log(users.filterBy("id", 3)); // [{id: 3, name: 'Lee'}]
+console.log(users.uniqBy("id")); //
+console.log(users.sortBy("id")); //
