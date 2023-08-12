@@ -4,10 +4,45 @@
 
 class Collection {
   #arr;
-  constructor() {}
+  constructor(...args) {
+    if (Array.isArray(args[0])) {
+      this.#arr = args[0];
+    } else this.#arr = args || [];
+  }
   // 인스턴스에서 #arr에 접근해주기 위해서 만들어줌
   get arr() {
     return this.#arr;
+  }
+
+  get length() {
+    return this.#arr.length;
+  }
+
+  get isEmpty() {
+    return this.#arr.length === 0;
+  }
+
+  print() {
+    return console.log(this.#arr);
+  }
+
+  clear() {
+    this.#arr = [];
+  }
+
+  // iterator
+  iterator() {
+    // 배열에 직접 이터레이터 함수를 호출
+    // return this.#arr[Symbol.iterator]();
+    // 아래의 제너레이터 함수를 호출
+    return this[Symbol.iterator]();
+  }
+
+  // generator
+  *[Symbol.iterator]() {
+    for (let i = 0; i < this.#arr.length; i += 1) {
+      yield this.#arr[i];
+    }
   }
 }
 

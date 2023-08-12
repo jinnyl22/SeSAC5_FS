@@ -46,23 +46,46 @@ class Stack {
     return this.#arr[this.length - 1];
   }
 
+  // 배열 길이 반환
   get length() {
     return this.#arr.length;
   }
 
+  //
   remove() {
-    this.#arr.pop();
+    this.pop();
   }
 
-  [Symbol.iterator]() {}
+  // 이터레이터
   iterator() {
-    return [Symbol.iterator]();
+    // 배열에 직접 이터레이터 함수를 호출
+    // return this.#arr[Symbol.iterator]();
+    // 아래의 제너레이터 함수를 호출
+    return this[Symbol.iterator]();
+  }
+
+  // 제너레이터
+  *[Symbol.iterator]() {
+    for (let i = 0; i < this.#arr.length; i += 1) {
+      yield this.#arr[i];
+    }
   }
 }
 
 // ex) Stack
 // 후입선출
-// const stack = new Stack(1, 2, 3, 4, 5, 6, 7);
+const stack = new Stack(1, 2, 3, 4, 5, 6, 7);
+// 이터레이터, 제너레이터 호출 방식은 똑같음!
+const stackIter = stack.iterator();
+console.log("🦄  stackIter:", stackIter.next());
+console.log("🦄  stackIter:", stackIter.next());
+console.log("🦄  stackIter:", stackIter.next());
+console.log("🦄  stackIter:", stackIter.next());
+console.log("🦄  stackIter:", stackIter.next());
+console.log("🦄  stackIter:", stackIter.next());
+console.log("🦄  stackIter:", stackIter.next());
+console.log("🦄  stackIter:", stackIter.next());
+
 // stack.print();
 // console.log(stack.poll);
 // stack.push(4);
@@ -121,19 +144,19 @@ class Queue {
 
   // 가장 먼저 들어간 요소 삭제, 반환 X
   remove() {
-    this.#arr.shift();
+    this.dequeue();
   }
 }
 
 // ex) Queue
 // 선입선출
-const queue = new Queue(1, 2, 3, 4);
-queue.enqueue(5); // 추가하기
+// const queue = new Queue(1, 2, 3, 4);
+// queue.enqueue(5); // 추가하기
 // queue.dequeue(); // 가장 먼저 추가 된 것 하나 꺼내기
 // queue.print();
 // queue.clear();
 // queue.print();
-console.log(queue.poll);
-console.log(queue.length);
-console.log(queue.isEmpty);
-queue.print();
+// console.log(queue.poll);
+// console.log(queue.length);
+// console.log(queue.isEmpty);
+// queue.print();
