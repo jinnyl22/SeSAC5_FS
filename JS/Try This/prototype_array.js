@@ -38,10 +38,13 @@ Array.prototype.filterBy = function (k, num) {
   // 원본배열이 변경되지 않은 새로운 배열 반환
   return this.filter((el) => el[k] === num);
 };
+
 // uniqBy
+// 중복된 것 빼고
 Array.prototype.uniqBy = function (prop) {
-  return new Set();
+  return [...new Set(this.map((el) => el[prop]))];
 };
+
 // sortBy
 Array.prototype.sortBy = function (prop) {};
 
@@ -49,13 +52,14 @@ Array.prototype.sortBy = function (prop) {};
 Object.defineProperties(Array.prototype, {
   firstObject: {
     get: function () {
+      console.log("firstObject >>", this[0]);
       return this[0];
     },
     // enumerable: true,
   },
   lastObject: {
     get: function () {
-      console.log(this[this.length - 1]);
+      console.log("lastObject >>", this[this.length - 1]);
       return this[this.length - 1];
     },
   },
@@ -84,5 +88,8 @@ console.log(users.findBy("name", "Kim")); // {id: 2, name: 'Kim'}
 console.log(users.findBy("name", "Lee")); // {id: 3, name: 'Lee'}
 console.log(users.filterBy("id", 2)); // [{id: 2, name: 'Kim'}]
 console.log(users.filterBy("id", 3)); // [{id: 3, name: 'Lee'}]
-console.log(users.uniqBy("id")); //
-console.log(users.sortBy("id")); //
+console.log(users.uniqBy("id")); // [1, 2, 3]
+const sortByIdDesc = users.sortBy("id", "desc");
+console.log("🚀  sortByIdDesc:", sortByIdDesc);
+const sortByNameDesc = users.sortBy("name", "desc");
+console.log("🚀  sortByNameDesc:", sortByNameDesc);
