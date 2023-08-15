@@ -26,7 +26,7 @@ const shift = (arr, cnt = 1) => {
 
 console.log(push(myArray, 5, 6)); // [1, 2, 3, 4, 5, 6]
 console.log(pop(myArray)); // [1, 2, 3]
-console.log(pop(armyArrayr, 2)); // 2개 팝! ⇒ [1, 2]
+console.log(pop(myArray, 2)); // 2개 팝! ⇒ [1, 2]
 console.log(unshift(myArray, 0)); // [0, 1, 2, 3, 4]
 console.log(unshift(myArray, 7, 8)); // [7, 8, 1, 2, 3, 4]
 console.log(shift(myArray)); // [2, 3, 4]
