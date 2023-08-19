@@ -8,13 +8,14 @@
 const total = { price: 45000, vat: 4500 };
 
 function fmt(txts, num) {
-  //   console.log("txts>>>", txts); // 첫번째 인수로 배열이 들어옴
-  //   console.log(isTotal); // ${}로 사용된 부분이 인수로 차례대로 들어옴
+  console.log("txts>>>", txts); // 첫번째 인수로 텍스트 부분이 배열로 들어옴 [ '주문합계: ', '원' ] / [ '세액합계: ', '원' ]
+  console.log(num); // ${}로 사용된 부분이 인수로 차례대로 들어옴 45000 / 4500
   const [total, won] = txts;
   const numStr = num.toLocaleString().padStart(7, " ");
   return `${total}${numStr}${won}`;
 }
 
+// tagged template
 console.log(fmt`주문합계: ${total.price}원`);
 console.log(fmt`세액합계: ${total.vat}원`);
 
