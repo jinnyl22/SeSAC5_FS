@@ -18,6 +18,10 @@ console.log(makeReverseArray(pureAll)); // [5, 4, 3, 2, 1] 반환
 const all = [1, 2, 3, 4, 5];
 // 비순수 함수
 const reverseArray = (arr) => {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    arr.push(arr[i]);
+  }
+  arr.splice(0, arr.length / 2);
   return arr;
 };
 
