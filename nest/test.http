@@ -1,0 +1,19 @@
+# REST Client 사용법 익히기!
+
+# 아래와 같이 host로 설정을 해주고 밑에서 요청 메서드별로 host를 써주면 사용할 수 있음 아니면 settings.json
+# @host = http://localhost:3000
+# GET {{localHost}}/api/hello 에러코드남
+
+# settings.json에서 설정한 값으로 요청 보낼 수 있음
+
+# 설정에서 shared
+GET {{localHost}}
+
+# 설정에서 localEnv
+# GET {{host}}
+
+# 기본 요청
+# GET http://localhost:3000
+
+
+POST http://localhost:3000
