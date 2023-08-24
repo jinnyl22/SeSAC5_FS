@@ -17,8 +17,8 @@ const deleteArray = (arr, start, end = arr.length) => {
 };
 
 const deleteObjectArray = (arr, ...args) => {
-  const [k, v] = [...args];
-  return arr.filter((el) => el[k] !== v);
+  const [k, v] = args;
+  return arr.filter((el, i) => (v === undefined ? i !== k : el[k] !== v));
 };
 
 // 2번 인덱스부터 삭제
@@ -30,7 +30,8 @@ console.log(deleteArray(arr, 1, 4)); // [1]
 console.log(deleteArray(arr, 0, 3)); // [4]
 
 // 2번 인덱스 삭제
-// console.log(deleteObjectArray(users, 2)); // Hong, Kim
+console.log(deleteObjectArray(users, 2)); // Hong, Kim
 console.log(deleteObjectArray(users, "id", 2)); // Hong, Lee
 console.log(deleteObjectArray(users, "name", "Lee")); // Hong, Kim
 console.log("원본배열 >>", arr);
+console.log("원본배열 >>", users);
