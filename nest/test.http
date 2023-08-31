@@ -17,3 +17,6 @@ GET {{localHost}}
 
 
 POST http://localhost:3000
+
+### service B test
+GET {{localHost}}/serviceB
