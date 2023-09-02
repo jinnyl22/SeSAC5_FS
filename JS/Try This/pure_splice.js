@@ -10,6 +10,12 @@ const pureSplice = (arr, idx, cnt, ...args) => {
 
   return [...arr1, ...args, ...arr2];
 };
+// const pureSplice2 = (arr, idx, cnt = arr.length, ...args) => {
+//   const arr1 = arr.slice(0, idx);
+//   const arr2 = arr.slice(idx + cnt);
+
+//   return [...arr1, ...args, ...arr2];
+// };
 
 // 인덱스 1부터 3개의 요소를 제거
 const a1 = pureSplice(arr, 1, 3); // a1 = [1, 5]
