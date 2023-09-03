@@ -17,9 +17,19 @@ class BaseAnimal extends Animal {
   // 오버라이딩
   private ani: Animal;
   constructor(aniOrName: string | Animal) {
-    super(typeof aniOrName === "string" ? aniOrName : aniOrName.getName());
-    this.ani = typeof aniOrName === "string" ? new Animal(aniOrName) : aniOrName;
+    if (typeof aniOrName === "string") {
+      super(aniOrName);
+      this.ani = new Animal(aniOrName);
+    } else {
+      super(aniOrName.getName());
+      this.ani = aniOrName;
+    }
   }
+
+  // constructor(aniOrName: string | Animal) {
+  //   super(typeof aniOrName === "string" ? aniOrName : aniOrName.getName());
+  //   this.ani = typeof aniOrName === "string" ? new Animal(aniOrName) : aniOrName;
+  // }
   bark(): void {
     super.bark();
     this.ani.bark();
