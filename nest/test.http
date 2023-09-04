@@ -15,8 +15,15 @@ GET {{localHost}}
 # 기본 요청
 # GET http://localhost:3000
 
-
-POST http://localhost:3000
-
 ### service B test
 GET {{localHost}}/serviceB
+
+### 요청을 분리해주기 위해 샵3개로 분리!
+POST {{localHost}}/user
+Content-Type: application/json;
+
+{
+    "name": "myname",
+    "email": "myemail@naver.com",
+    "password": "1234"
+}
