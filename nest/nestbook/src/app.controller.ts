@@ -17,8 +17,9 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return process.env.DATABASE_HOST;
   }
+
   @Post()
   setHello() {
     this.greet = 'xxx';

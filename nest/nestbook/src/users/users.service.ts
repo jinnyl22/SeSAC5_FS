@@ -3,7 +3,7 @@ import { CreateUserDto } from './dto';
 import * as uuid from 'uuid';
 import { EmailService } from '../email/email.service';
 
-import { UserInfo } from './dto';
+import { UserInfo } from './UserInfo';
 
 @Injectable()
 export class UsersService {
