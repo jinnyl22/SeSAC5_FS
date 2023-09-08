@@ -1,13 +1,42 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { CreateUserDto } from './dto';
 import * as uuid from 'uuid';
 import { EmailService } from '../email/email.service';
 
 import { UserInfo } from './UserInfo';
+import emailConfig from 'src/config/emailConfig';
 
 @Injectable()
 export class UsersService {
-  constructor(private emailService: EmailService) {}
+  // @Inject(emailConfig) private readonly config;
+  constructor(
+    private emailService: EmailService,
+    private readonly config: ConfigService,
+  ) {
+    const { TTT, PPP } = process.env;
+    console.log('TTT,PPP >> ', TTT, PPP, config.get('emailOptions'));
+  }
+
+  create(createUserDto: CreateUserDto) {
+    return 'This action adds a new user';
+  }
+
+  //   findAll() {
+  //     return `This action returns all users`;
+  //   }
+
+  //   findOne(id: number) {
+  //     return `This action returns a #${id} user`;
+  //   }
+
+  //   update(id: number, updateUserDto: UpdateUserDto) {
+  //     return `This action updates a #${id} user`;
+  //   }
+
+  //   remove(id: number) {
+  //     return `This action removes a #${id} user`;
+  //   }
 
   async createUser(name: string, email: string, password: string) {
     await this.checkUserExists(email);

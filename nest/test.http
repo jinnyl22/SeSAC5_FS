@@ -19,7 +19,7 @@ GET {{localHost}}
 GET {{localHost}}/serviceB
 
 ### 요청을 분리해주기 위해 샵3개로 분리!
-POST {{localHost}}/user
+POST {{localHost}}/users
 Content-Type: application/json;
 
 {
@@ -27,5 +27,8 @@ Content-Type: application/json;
     "email": "myemail@naver.com",
     "password": "1234"
 }
-###
+### --------------------------------------------
 GET {{localHost}}/users
+
+###
+GET {{localHost}}/redirect-hello?nickname=이&addr=서울
