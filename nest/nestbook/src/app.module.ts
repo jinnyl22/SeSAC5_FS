@@ -7,9 +7,11 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { validationSchema } from './config/validationSchema';
 import emailConfig from './config/emailConfig';
+import { CoreModule } from './common/core.module';
 
 @Module({
   imports: [
+    CoreModule,
     UsersModule,
     ConfigModule.forRoot({
       envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],

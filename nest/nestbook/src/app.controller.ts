@@ -3,16 +3,23 @@ import { AppService } from './app.service';
 import { ServiceB } from './services/b.service';
 import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
+import { CommonService } from './common/common.service';
 
 @Controller()
 export class AppController {
   greet: string;
   tmpQuery: { nickname: string };
   constructor(
+    private readonly commonService: CommonService,
     private readonly appService: AppService,
     private readonly serviceB: ServiceB,
     private readonly configService: ConfigService,
   ) {}
+
+  @Get('/common-hello')
+  getCommonHello(): string {
+    return this.commonService.hello();
+  }
 
   @Get()
   getHello(): string {
