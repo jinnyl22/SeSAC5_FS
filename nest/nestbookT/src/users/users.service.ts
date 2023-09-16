@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 // import { v1 } from 'uuid';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -9,6 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Profile } from './entities/profile.entity';
 import { Addr } from './entities/addr.entity';
+import { Auth } from './entities/auth.entity';
 
 @Injectable()
 export class UsersService {
@@ -49,13 +50,21 @@ export class UsersService {
 
     // const profile = new Profile();
     const profile = new Profile({ ...createUserDto.profile, role: 0 });
+    // 주소는 아예 없어도 되게 해놨기때문에 ?을 붙여주는 것임
     const addrs = createUserDto.addrs?.map(
       (createAddrDto) => new Addr(createAddrDto),
     );
+
+    // const auths = createUserDto.auths?.map(
+    //   (createAddrDto) => new Auth(createAddrDto),
+    // );
+    // const allAuths = await this.entityManager.find(Auth);
+    // const auths = createUserDto.auths?.map((adto) =>
+    //   allAuths.find((a) => a.id === adto.id),
+    // );
+
     const user = new User({ ...createUserDto, profile, addrs });
-    // profile.photo = createUserDto.profile.photo;
-    // profile.role = 0;
-    user.profile = profile;
+
     return this.entityManager.save(user);
   }
 
@@ -103,8 +112,23 @@ export class UsersService {
     // userRepository의 findOne은 Promise를 반환함 그래서 async/await 사용해주어야함
     // const user = await this.userRepository.findOne({ where: { id } });
     const user = await this.findOne(id);
+
+    // 유저가 없으면 404
+    if (!user) throw new NotFoundException('There id no user');
+
     user.name = updateUserDto.name;
-    user.passwd = updateUserDto.passwd;
+
+    if (updateUserDto.passwd) user.passwd = updateUserDto.passwd;
+
+    // 프로필이 있을 때만 업데이트
+    // if (updateUserDto.profile) {
+    user.profile = new Profile(updateUserDto.profile);
+    // }
+
+    user.addrs = updateUserDto.addrs?.map(
+      (createAddrDto) => new Addr(createAddrDto),
+    );
+
     return this.userRepository.save(user);
   }
 

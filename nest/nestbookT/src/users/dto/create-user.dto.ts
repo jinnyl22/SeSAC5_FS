@@ -1,7 +1,15 @@
 import { BadRequestException } from '@nestjs/common';
-import { Transform } from 'class-transformer';
-import { IsString, IsEmail, Matches, IsNotEmpty } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+import {
+  IsString,
+  IsEmail,
+  Matches,
+  IsNotEmpty,
+  ValidateNested,
+} from 'class-validator';
 import { CreateProfileDto } from './create-profile.dto';
+import { CreateAddrDto } from './create-addr.dto';
+import { CreateAuthDto } from './create-auth.dto';
 
 export class CreateUserDto {
   @IsString()
@@ -32,10 +40,18 @@ export class CreateUserDto {
   })
   passwd: string;
 
+  // 중첩 객체의 유효성 검사
+  @ValidateNested()
+  // 리터럴 객체를 해당 클래스의 인스턴스로 변환
+  @Type(() => CreateProfileDto)
   // 비워두면 안되는 항목 검사
   @IsNotEmpty()
   profile: CreateProfileDto;
 
   // 여기서 벨리데이션 체크를 해주어야함
-  addrs: CreateAddrDto[];
+  @ValidateNested()
+  @Type(() => CreateAddrDto)
+  addrs?: CreateAddrDto[];
+
+  auths: CreateAuthDto[];
 }

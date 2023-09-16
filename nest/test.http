@@ -32,3 +32,9 @@ GET {{localHost}}/users
 
 ###
 GET {{localHost}}/redirect-hello?nickname=이&addr=서울
+
+
+### ------------------------------------ users
+### user list
+GET {{host}}/users
+

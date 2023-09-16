@@ -1,0 +1,78 @@
+### create - full
+POST {{host}}/users
+Content-Type: application/json
+
+{
+  "name": "홍길동3",
+  "email": "indiflex3@gmail.com",
+  "passwd": "as121adsfa",
+  "profile": {
+    "photo": "/upload/hong.jpg",
+    "role":1
+  },
+  "addrs": {
+    "street": "서울특별시",
+    "detail": "도봉구"
+  },
+  "auth": [{
+    "type": "R"
+  }]
+}
+
+### create - user with profile
+POST {{host}}/users
+Content-Type: application/json
+
+{
+  "name": "홍길동2",
+  "email": "indiflex2@gmail.com",
+  "passwd": "as121adsfa",
+  "profile": {
+    "photo": "/upload/hong.jpg"
+  },
+  "addrs":[{"street":"선유로 9길", "detail": "102동"}]
+}
+
+### update user
+PATCH {{host}}/user/1
+Content-Type: application/json
+
+{
+  "name": "홍길동",
+  "email": "indiflex1@gmail.com",
+  "passwd": "as121adfds",
+  "profile": {
+    "photo": "/upload/hong.jpg",
+    "role":0
+  },
+  "addrs":[{"street":"선유로 88길", "detail": "102동"},{"street":"선유로 8길", "detail": "105동"}]
+}
+
+### user
+GET {{host}}/users
+
+### default-value-pipe
+GET {{host}}/users/123x/defpipe
+
+### verify
+GET {{host}}/users/verify
+
+### ------------------------------------ services
+
+### redirect
+GET {{host}}/redirect-hello?nickname=홍123&addr=서울&age=23
+
+### serviceB test
+GET {{host}}/serviceB
+
+###
+GET {{host}}/sayHello
+
+###
+
+POST {{host}}
+Content-Type: application/json
+
+{
+  name: 'xxx'
+}
