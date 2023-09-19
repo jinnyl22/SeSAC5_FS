@@ -1,11 +1,13 @@
-import { IsInt, IsOptional, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { SuperCreateDto } from 'src/db/super.dto';
 
-export class CreateAuthDto {
-  @IsInt()
-  @IsOptional()
-  id: number;
+export class CreateAuthDto extends SuperCreateDto {
+  // @IsInt()
+  // @IsOptional()
+  // id: number;
 
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
+  // @IsOptional()
   authname: string;
 }

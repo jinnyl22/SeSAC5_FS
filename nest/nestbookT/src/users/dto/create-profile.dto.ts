@@ -1,15 +1,18 @@
-import { IsIn, IsString, IsInt, IsOptional } from 'class-validator';
+import { IsIn, IsOptional, IsString } from 'class-validator';
+import { SuperCreateDto } from '../../db/super.dto';
 
-export class CreateProfileDto {
-  @IsInt()
-  @IsOptional()
-  id: number;
-
+export class CreateProfileDto extends SuperCreateDto {
   @IsString()
-  // 값이 있을 때만 비교하고 값이 들어오지 않으면 비교하지 않음
   @IsOptional()
   photo: string;
 
+  /**
+   * 0: ready
+   * 1: registed
+   * 2: vip
+   * 3: vvip
+   */
   @IsIn([0, 1, 2, 3])
+  @IsOptional()
   role: number;
 }

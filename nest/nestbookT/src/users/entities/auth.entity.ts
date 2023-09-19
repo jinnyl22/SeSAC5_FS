@@ -1,7 +1,8 @@
 import { SuperEntity } from 'src/db/super.entity';
-import { Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
+@Entity({ name: 'Auth' })
 export class Auth extends SuperEntity<Auth> {
-  @Column()
+  @Column({ length: 30 })
   authname: string;
 }

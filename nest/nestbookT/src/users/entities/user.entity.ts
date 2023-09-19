@@ -40,10 +40,10 @@ export class User extends SuperEntity<User> {
   @OneToMany(() => Addr, (addr) => addr.user, { cascade: true })
   addrs: Addr[];
 
-  // @ManyToMany(() => Auth, { cascade: true })
-  // // 매핑 테이블 이름을 UserAuth로 해줄게 라는 뜻
-  // @JoinTable({ name: 'UserAuth' })
-  // auths: Auth[];
+  @ManyToMany(() => Auth, { cascade: true })
+  // 매핑 테이블 이름을 UserAuth로 해줄게 라는 뜻
+  @JoinTable({ name: 'UserAuth' }) // 매핑 테이블 생성해줌
+  auths: Auth[];
 
   //   // userService의 create 에서 User 인스턴스를 생성할 때 CreateUserDto를 넣어주면
   //   // 아래의 생성자를 타고 들어와서 할당됨

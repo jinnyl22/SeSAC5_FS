@@ -1,51 +1,54 @@
+### ------------------------------------ users
+### user list
+GET {{host}}/users?page=2
+
+### user - one
+GET {{host}}/users/3
+
 ### create - full
 POST {{host}}/users
 Content-Type: application/json
 
 {
-  "name": "홍길동3",
-  "email": "indiflex3@gmail.com",
+  "name": "홍길동7",
+  "email": "indiflex7@gmail.com",
   "passwd": "as121adsfa",
   "profile": {
     "photo": "/upload/hong.jpg",
     "role":1
   },
-  "addrs": {
+  "addrs": [{
     "street": "서울특별시",
-    "detail": "도봉구"
-  },
-  "auth": [{
-    "type": "R"
-  }]
+    "detail": "강북구"
+  }],
+  "auths": [
+    {"id": 1, "authname": "R"},
+    {"id": 2, "authname": "W"}
+  ]
 }
 
-### create - user with profile
-POST {{host}}/users
+
+
+### update user - small (except passwd, profile)
+PATCH {{host}}/users/3
 Content-Type: application/json
 
 {
-  "name": "홍길동2",
-  "email": "indiflex2@gmail.com",
-  "passwd": "as121adsfa",
-  "profile": {
-    "photo": "/upload/hong.jpg"
-  },
-  "addrs":[{"street":"선유로 9길", "detail": "102동"}]
-}
-
-### update user
-PATCH {{host}}/user/1
-Content-Type: application/json
-
-{
-  "name": "홍길동",
-  "email": "indiflex1@gmail.com",
+  "name": "홍길동11",
+  "email": "indiflex11@gmail.com",
   "passwd": "as121adfds",
   "profile": {
     "photo": "/upload/hong.jpg",
     "role":0
   },
-  "addrs":[{"street":"선유로 88길", "detail": "102동"},{"street":"선유로 8길", "detail": "105동"}]
+  "addrs":[
+    {"street":"선유로 88길", "detail": "102동"},
+    {"street":"선유로 8길", "detail": "105동"}
+    ],
+  "auths": [
+    {"id": 1, "authname": "."},
+    {"id": 3, "authname": "."}
+  ]
 }
 
 ### user
@@ -56,6 +59,19 @@ GET {{host}}/users/123x/defpipe
 
 ### verify
 GET {{host}}/users/verify
+
+### auth ------------------------------------------
+
+### auths - all
+GET {{host}}/users/auths
+
+### auths - create
+POST {{host}}/users/auths
+Content-Type: application/json
+
+{
+  "authname": "R"
+}
 
 ### ------------------------------------ services
 

@@ -8,7 +8,7 @@ export class CreateAddrDto extends SuperEntity<CreateAddrDto> {
   @IsNotEmpty()
   detail: string;
 
-  @IsString()
-  @IsOptional()
-  zipcode: string;
+  // @IsString()
+  // @IsOptional()
+  // zipcode: string;
 }

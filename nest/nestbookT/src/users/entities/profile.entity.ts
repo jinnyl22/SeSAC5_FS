@@ -16,8 +16,12 @@ export class Profile extends SuperEntity<Profile> {
   role: number;
 
   // JS로 컴파일 되면 User는 없어지기 때문에 테이블에 미리 User를 등록해주는 것임!
-  @OneToOne(() => User, { onDelete: 'CASCADE' })
-  users: User;
+  @OneToOne(() => User, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
+  user: User;
 
   // super.entity파일에서 상속 받아서 사용하게 만들 것임
   //   constructor(profile: Partial<Profile>) {

@@ -51,7 +51,9 @@ export class CreateUserDto {
   // 여기서 벨리데이션 체크를 해주어야함
   @ValidateNested()
   @Type(() => CreateAddrDto)
-  addrs?: CreateAddrDto[];
+  addrs: CreateAddrDto[];
 
+  @ValidateNested()
+  @Type(() => CreateAuthDto)
   auths: CreateAuthDto[];
 }
