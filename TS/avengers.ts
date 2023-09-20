@@ -10,7 +10,9 @@ interface Avengers {
 // 아래에서 peter를 생성자로 받음! peter를 발전시키는 것임!
 class Avenger implements Avengers {
   constructor(public name: string) {}
-  moveout() {}
+  moveout() {
+    console.log(this.name);
+  }
 }
 
 // 데코레이터!
