@@ -29,7 +29,8 @@ export class Addr extends SuperEntity<Addr> {
     onUpdate: 'CASCADE',
     orphanedRowAction: 'soft-delete', // 'delete'
   })
-  @JoinColumn() // 여기서 따로 매핑테이블 이름을 지정해주지 않으면 밑의 엔티티타입에 Id가 붙는다
+  // Addr 테이블에 컬럼이 하나 더 생긴다
+  @JoinColumn() // 여기서 따로 컬럼 이름을 지정해주지 않으면 밑의 엔티티타입에 Id가 붙는다
   user: User; // userId
 
   @DeleteDateColumn()

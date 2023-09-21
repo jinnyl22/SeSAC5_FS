@@ -39,6 +39,11 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @Get()
+  findAll(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number) {
+    return this.usersService.findAll(page);
+  }
+
   // (warning):id와 같은 depth
   // TODO: depth 변경(email/verify)
   @Get('verify')
@@ -46,15 +51,16 @@ export class UsersController {
     return this.usersService.verifyToken(email, token);
   }
 
+  // /api/0.1/users/auths
   @Post('/auths')
   createAuth(@Body() createAuthDto: CreateAuthDto) {
     return this.usersService.createAuth(createAuthDto);
   }
 
-  // @Get('/auths')
-  // findAllAuth(){
-  //   return this.fin
-  // }
+  @Get('/auths')
+  findAllAuth() {
+    return this.usersService.findAllAuth();
+  }
 
   @Get(':id')
   // findOne(@Param('id') id: string) {
@@ -72,15 +78,11 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
-  }
-
   @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  // return this.usersService.update(+id, updateUserDto);
-  update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
     return this.usersService.update(id, updateUserDto);
   }
 
