@@ -27,7 +27,8 @@ export class User extends SuperEntity<User> {
   @Column({ unique: true })
   email: string;
 
-  @Column({ length: 256 })
+  // select: false 하면 응답 받을 때 passwd는 빼고 받을 수 있음!
+  @Column({ length: 256, select: false })
   passwd: string;
 
   @OneToOne(() => Profile, { cascade: true, onDelete: 'SET NULL' })

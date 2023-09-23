@@ -1,10 +1,28 @@
 GET {{host}}
 
 ### ------------------------------------ posts
-### user - one
-GET {{host}}/posts/1
+### post - one
+GET {{host}}/posts/32
 
-### update user - small (except passwd, profile)
+### post - all
+GET {{host}}/posts
+
+### post - by tagname
+GET {{host}}/posts?tname=tag111
+
+### create post
+POST {{host}}/posts
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "홍길동 title22...",
+  "content": "content2222...",
+  "writer": 1,
+  "tags": [{ "tagname": "tag111" }, { "tagname": "tag112" }]
+}
+
+### update post - small (except passwd, profile)
 PATCH {{host}}/posts/1
 Content-Type: application/json
 
@@ -12,7 +30,8 @@ Content-Type: application/json
   "id": 1,
   "title": "홍길동 title22...",
   "content": "content2222...",
-  "writer": 14
+  "writer": 14,
+  "tags": [{ "tname": "tag111" }, { "tname": "tag112" }]
 }
 
 ### ------------------------------------ users
@@ -20,7 +39,7 @@ Content-Type: application/json
 GET {{host}}/users?page=2
 
 ### user - one
-GET {{host}}/users/1
+GET {{host}}/users/3
 
 ### create - user with profile & addrs
 POST {{host}}/users
