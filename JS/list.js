@@ -22,6 +22,7 @@ while (true) {
   if (!node) break;
 }
 console.log("🚀  arr:", arr);
+console.log("----------------------------------------------------");
 
 // array to list (역방향 / 뒤 -> 앞)
 let node2;
@@ -35,19 +36,19 @@ console.log("🚀  node2>>>>>\n", node2);
 // print(node2);
 
 // array to list (순방향)
-let obj;
-let preNode; // {value:1, rest: {value:2, rest:{value:3, rest:undefined}}}
-for (let i = 0; i < arr.length; i++) {
-  const node = { value: arr[i], rest: undefined };
-  if (!obj) {
-    obj = node; // {value:1, rest: null}
-  } else {
-    preNode.rest = node;
-  }
-  preNode = node;
-}
-console.log("🚀  node3>>>>>\n", obj);
-return;
+// let obj;
+// let preNode; // {value:1, rest: {value:2, rest:{value:3, rest:undefined}}}
+// for (let i = 0; i < arr.length; i++) {
+//   const node = { value: arr[i], rest: undefined };
+//   if (!obj) {
+//     obj = node; // {value:1, rest: null}
+//   } else {
+//     preNode.rest = node;
+//   }
+//   preNode = node;
+// }
+// console.log("🚀  node3>>>>>\n", obj);
+// return;
 
 // 1과 2 사이에 4 끼워넣기!
 const node1 = list;

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM 조작 수업</title>
+  </head>
+  <body>
+    <div id="div">
+      <p><span id="spanX"></span></p>
+    </div>
+  </body>
+  <script>
+    const a = document.getElementById("spanX");
+
+    function f1() {
+      let width = a.offsetWidth;
+      console.log(width);
+      a.textContent = "X".repeat(500 / (width / 5));
+    }
+    f1();
+
+    // while (a.offsetWidth < 500)
+    // 이렇게 하면 506이 나오니까 500 아래로 평균값을 맞춰줘야함
+    // while (width < 500) {
+    //   //   a.appendChild(document.createTextNode("X")); // DOM을 계속 리플로우해서 좋지 않음
+    //   a.textContent += "X";
+    // }
+  </script>
+</html>

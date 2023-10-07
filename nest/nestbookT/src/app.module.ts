@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { EmailModule } from './email/email.module';
 import { DbModule } from './db/db.module';
 import { PostsModule } from './posts/posts.module';
+import { AuthModule } from './auth/auth.module';
 import emailConfig from './config/email.config';
 import baseConfig from './config/base.config';
 
@@ -24,6 +25,7 @@ import baseConfig from './config/base.config';
     EmailModule,
     DbModule,
     PostsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService, AService, BService],
